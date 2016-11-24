@@ -8,8 +8,8 @@ function preload(){
 	game.load.image('sky', 'assets/sky.png');
 	game.load.image('ground', 'assets/platform.png');
 	game.load.image('star', 'assets/star.png');
-	game.load.spritesheet('dude', 'assets/dude.png');
-	game.load.spritesheet('baddie', '')
+	game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+	game.load.spritesheet('baddie', 32, 42);
 }
 
 function create(){
@@ -39,7 +39,7 @@ function create(){
 		player.animations.add('left', [0, 1, 2, 3], 10, true);
 		player.animations.add('right', [5, 6, 7, 8], 10, true);
 		// physics
-		game.physics.arcade.enable(Player);
+		game.physics.arcade.enable(player);
 		player.body.bounce.y = 0.2;
 		player.body.gravity.y = 300;
 		player.body.collideWorldBounds = true;
