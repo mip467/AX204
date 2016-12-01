@@ -34,6 +34,23 @@ function create(){
 	ledge = platforms.create(-150, 250, 'ground');
 	ledge.body.immovable = true;
 
+	// Generare stars for the player to collect
+	//start by creating a group called stars
+	stars = game.add.group();
+	//adding physics to the group
+	stars.enableBody = true;
+
+	//here we'll create 12 stars spaced evenly apart
+	for (var i=0; i<12; i++){
+
+		//create a star inside the "stars" group
+		var star = star.create(i*70, 0, 'star');
+		// Add gravity
+		star.body.gravity.y = 500;
+		//This gives each star a random bounce value
+		star.body.bounce.y = 0.7+Math.random()0.3;
+	}
+
 	// Player sprite
 	player = game.add.sprite(32, game.world.height - 150, 'dude');
 		// animate
@@ -62,6 +79,7 @@ function create(){
 function update(){
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(enemy, platforms);
+	game.physics.arcade.collide(stars, platforms);
 
 	//reset player velocity
 	player.body.velocity.x = 0;
@@ -83,7 +101,12 @@ function update(){
 	{
 		player.body.velocity.y = -350;
 	}
-
+	//Make baddie run
+	if (enemy.x > 759) {
+		enemy.body.velocity.x = -120;
+	} else if (enemy.x <405) {
+		enemy.body.velocity.x = 120;
+	}
 
 
 }
