@@ -59,6 +59,31 @@ function create(){
 }
 
 function update(){
+	game.physics.arcade.collide(player, platforms);
+	game.physics.arcade.collide(enemy1, platforms);
+
+	//reset player velocity
+	player.body.velocity.x = 0;
+
+	// keyboard event
+	if(cursors.left.isDown) {
+		player.body.velocity.x= -150;
+		player.animations.play("left");
+	}else if (cursors.right.isDown) {
+		player.body.velocity.x= +150;
+		player.animations.play("right");
+	}else {
+		// when player sprite stops
+		player.animations.stop();
+		player.frame = 4;
+	}
+	//allow player to jump
+	if(cursors.up.isDown && player.body.touching.down) 
+	{
+		player.body.velocity.y = -350;
+	}
+
+
 
 }
 
