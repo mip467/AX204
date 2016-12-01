@@ -48,7 +48,7 @@ function create(){
 		// Add gravity
 		star.body.gravity.y = 500;
 		//This gives each star a random bounce value
-		star.body.bounce.y = 0.7+Math.random()0.3;
+		star.body.bounce.y = 0.7+Math.random()*0.3;
 	}
 
 	// Player sprite
