@@ -60,7 +60,7 @@ function create(){
 
 function update(){
 	game.physics.arcade.collide(player, platforms);
-	game.physics.arcade.collide(enemy1, platforms);
+	game.physics.arcade.collide(enemy, platforms);
 
 	//reset player velocity
 	player.body.velocity.x = 0;
