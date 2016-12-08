@@ -3,7 +3,7 @@
 // Declare the variables
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 var score = 0;
-var cursors;
+var scoreText;
 
 function preload(){
 	game.load.image('sky', 'assets/sky.png');
@@ -39,6 +39,9 @@ function create(){
 	stars = game.add.group();
 	//adding physics to the group
 	stars.enableBody = true;
+
+	//add in your score system
+	scoreText = game.add.text(16,16, "score: 0",{fontSize: '32px',fill:'#000'})
 
 	//here we'll create 12 stars spaced evenly apart
 	for (var i=0; i<12; i++){
@@ -81,6 +84,9 @@ function update(){
 	game.physics.arcade.collide(enemy, platforms);
 	game.physics.arcade.collide(stars, platforms);
 
+	//the function "collectStar" will be called whenever the player walk over the stars
+	game.physics.arcade.overlap(player, stars, collectStar, null, this);
+
 	//reset player velocity
 	player.body.velocity.x = 0;
 
@@ -106,10 +112,22 @@ function update(){
 		enemy.body.velocity.x = -120;
 	} else if (enemy.x <405) {
 		enemy.body.velocity.x = 120;
+		enemy1.animations.play('right');
 	}
 
+	
+	function collectStar(player,star){
+		//remove star from the screen 
+		star.kill();
+		//Create new star
+		star = stars.create(Math.floor(Math.random()*750),0,'star');
+		//Assign gravity
+		star.body.gravity.y=200;
+		//Assign random bounce value to the star
+		star.body.bounce.y = 0..7 + Math.random() *0.3;
+		//update the score
+		score+=10;
+		scoreText.text="Score: "+score;
+	}
 
 }
-
-
-
