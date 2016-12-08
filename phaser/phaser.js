@@ -124,7 +124,7 @@ function update(){
 		//Assign gravity
 		star.body.gravity.y=200;
 		//Assign random bounce value to the star
-		star.body.bounce.y = 0..7 + Math.random() *0.3;
+		star.body.bounce.y = 0.7 + Math.random() *0.3;
 		//update the score
 		score+=10;
 		scoreText.text="Score: "+score;
